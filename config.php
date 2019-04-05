@@ -5,7 +5,7 @@
     $password = "Timpakul2016+";
 
     try {
-        $conn = new PDO("sqlsrv:server = $serverName; Database = $dbName", "$username", "$password");
+        $conn = new PDO("sqlsrv:server = $serverName; Database = $dbName", $username, $password);
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }
     catch (PDOException $e) {
