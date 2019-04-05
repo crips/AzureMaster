@@ -18,18 +18,18 @@
     
     <body>
     <?php
-		$serverName = "tcp:bukabuku.database.windows.net,1433";
-		$dbName = "bukabuku";
-		$uname = "mafrizal";
-		$passwd = "Timpakul2016+";
+		//$serverName = "tcp:bukabuku.database.windows.net,1433";
+		//$dbName = "bukabuku";
+		//$uname = "mafrizal";
+		//$passwd = "Timpakul2016+";
 
-		try {
-			$conn = new PDO("sqlsrv:server = $serverName; Database = $dbName", $uname, $passwd);
-			$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-		}
-		catch (PDOException $e) {
-			die(print_r($e));
-		}
+		//try {
+			//$conn = new PDO("sqlsrv:server = $serverName; Database = $dbName", $uname, $passwd);
+			//$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+		//}
+		//catch (PDOException $e) {
+			//die(print_r($e));
+		//}
 
 		//$connectionInfo = array("UID" => "mafrizal@bukabuku", "pwd" => "Timpakul2016+", "Database" => "bukabuku", "LoginTimeout" => 60, "Encrypt" => 1, "TrustServerCertificate" => 0);
 		//$conn = sqlsrv_connect($serverName, $connectionInfo);
