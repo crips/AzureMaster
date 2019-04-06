@@ -40,7 +40,6 @@
 		echo "Failed : " . $e;
     }
 
-    /*
 	if (isset($_POST['submit'])) {
         try {
             $name = $_POST['name'];
@@ -61,7 +60,6 @@
         echo "<h3>Your're registered!</h3>";
     } else if (isset($_POST['load_data'])) {
         try {
-		*/
             $sql_select = "SELECT buku.Id as ID, buku.JudulBuku as Judul, buku.Deskripsi as Deskripsi, kat.NamaKategori as Kategori, buku.Harga as Harga, pe.NamaPenerbit as Penerbit, buku.TglRilis as Rilis, buku.TglDitambahkan as Addedd FROM buku INNER JOIN Kategori kat ON buku.IdKategori = kat.IdKategori INNER JOIN Penerbit pe ON buku.IdPenerbit = pe.IdPenerbit";
             $stmt = $conn->query($sql_select);
             $registrants = $stmt->fetchAll(); 
@@ -87,15 +85,13 @@
                     echo "<td>".$registrant['Addedd']."</td></tr>";
                 }
                 echo "</table>";
-          /*
 		  } else {
-                echo "<h3>No one is currently registered.</h3>";
+                echo "<h3>Tidak Ada Buku Terdata</h3>";
             }
         } catch(Exception $e) {
             echo "Failed: " . $e;
         }
     }
-	*/
  ?>
  </body>
  </html>
