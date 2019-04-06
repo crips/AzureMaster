@@ -64,7 +64,38 @@
             echo "Failed" . $e;
          }
          echo "<h3>Your're registered!</h3>";
-      }
+      } else if (isset($_POST['load_data'])) {
+            try {
+                $sql_select = "SELECT buku.Id as ID, buku.JudulBuku as Judul, buku.Deskripsi as Deskripsi, kat.NamaKategori as Kategori, buku.Harga as Harga, pe.NamaPenerbit as Penerbit, buku.TglRilis as Rilis, buku.TglDitambahkan as Addedd FROM buku INNER JOIN Kategori kat ON buku.IdKategori = kat.IdKategori INNER JOIN Penerbit pe ON buku.IdPenerbit = pe.IdPenerbit";
+                $stmt = $conn->query($sql_select);
+                $registrants = $stmt->fetchAll(); 
+                if(count($registrants) > 0) {
+                    echo "<h2>Buku yang tersedia:</h2>";
+                    echo "<table>";
+                    echo "<tr><th>Judul</th>";
+                    echo "<th>Deskripsi</th>";
+                    echo "<th>Kategori</th>";
+                    echo "<th>Harga</th>";
+                    echo "<th>Penerbit</th>";
+                    echo "<th>Tgl Rilis</th>";
+                    echo "<th>Tgl Ditambahkan</th></tr>";
+                    foreach($registrants as $registrant) {
+                        echo "<tr><td>".$registrant['Judul']."</td>";
+                        echo "<td>".$registrant['Deskripsi']."</td>";
+                        echo "<td>".$registrant['Kategori']."</td>";
+                        echo "<td>".$registrant['Harga']."</td></tr>";
+                        echo "<td>".$registrant['Penerbit']."</td></tr>";
+                        echo "<td>".$registrant['Rilis']."</td></tr>";
+                        echo "<td>".$registrant['Addedd']."</td></tr>";
+                    }
+                    echo "</table>";
+                } else {
+                    echo "<h3>Tidak ada buku di data tersimpan</h3>";
+                }
+            } catch(Exception $e) {
+                echo "Failed: " . $e;
+            }
+        }
       ?>
       <table class="table table-responsive mt-3">
          <thead>
