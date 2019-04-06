@@ -64,7 +64,7 @@
 			$sql_select = "SELECT * FROM Buku";
             $stmt = $conn->query($sql_select);
             $registrants = $stmt->fetchAll(); 
-            if(count($registrants) > 0) {
+            //if(count($registrants) > 0) {
                 echo "<h2>Daftar Buku:</h2>";
                 echo "<table>";
                 echo "<tr><th>ID</th>";
@@ -86,9 +86,9 @@
                     echo "<td>".$registrant['TglDitambahkan']."</td></tr>";
                 }
                 echo "</table>";
-		  } else {
-                echo "<h3>Tidak Ada Buku Terdata</h3>";
-            }
+		  //} else {
+                //echo "<h3>Tidak Ada Buku Terdata</h3>";
+            //}
         } catch(Exception $e) {
             echo "Failed: " . $e;
         }
