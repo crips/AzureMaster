@@ -31,7 +31,16 @@
  </form>
 
  <?php
-    include "config.php"
+    $host = "tcp:bukabuku.database.windows.net, 1433";
+	$user = "mafrizal";
+    $pass = "Timpakul2016+";
+    $db = "bukabuku";
+    try {
+		$con = new PDO("sqlsrv:Server = $host; Database = $db", $user, $pass);
+        $con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    } catch (Exception $e) {
+		echo "Failed : " . $e;
+    }
 
     if (isset($_POST['submit'])) {
         try {
