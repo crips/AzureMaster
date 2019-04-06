@@ -57,12 +57,25 @@
             <label for="TglRilis">Tanggal Rilis</label>
             <input type="text" id="datepicker" class="form-control">
          </div>
-         <input type="submit" name="simpan" value="simpan" class="btn btn-primary btn-md">
-		 <input type="submit" name="load_data" value="lihat data" class="btn btn-primary btn-md">
+         <input type="submit" name="simpan" value="Simpan" class="btn btn-primary btn-md"/>
+		 <input type="submit" name="load_data" value="Lihat Data" class="btn btn-primary btn-md"/>
       </form>
       
       <?php
-		include "config.php";
+			$host = "tcp:bukabuku.database.windows.net, 1433";
+	$user = "mafrizal";
+    $pass = "Timpakul2016+";
+    $db = "bukabuku";
+    try {
+		$con = new PDO("sqlsrv:Server = $host; Database = $db", $user, $pass);
+        $con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    } catch (Exception $e) {
+		echo "Failed : " . $e;
+    }
+	
+	$connectionInfo = array("UID" => "mafrizal@bukabuku", "pwd" => "Timpakul2016+", "Database" => "bukabuku", "LoginTimeout" => 30, "Encrypt" => 1, "TrustServerCertificate" => 0);
+	$serverName = "tcp:bukabuku.database.windows.net, 1433";
+	$conn = sqlsrv_connect($serverName, $connectionInfo);
 
       if (isset($_POST['load_data'])) {
             try {
