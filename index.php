@@ -24,7 +24,9 @@
 	 <div class="containermt-3">
 		<div class="row">
 			<div class="col-sm-12">
-				 <button type="button" class="btn btn-primary btnTambahData" data-toggle="modal"  data-target="#exampleModal" data-zurl="">Tambah Buku</button>
+				 <button type="button" class="btn btn-primary btnTambahData" data-toggle="modal"  data-target="#exampleModal" data-zurl="https://bukabuku.azurewebsites.net/add_new.php">Tambah Buku</button>
+				 <button type="button" class="btn btn-primary btnTambahData" data-toggle="modal"  data-target="#exampleModal" data-zurl="https://bukabuku.azurewebsites.net/kategoriku.php">Kategori Buku</button>
+				 <button type="button" class="btn btn-primary btnTambahData" data-toggle="modal"  data-target="#exampleModal" data-zurl="https://bukabuku.azurewebsites.net/penerbitan.php">Penerbit</button>
 
 				 <h1>Katalog Buku</h1>
 				 <table class="table table-stripped">
@@ -46,7 +48,7 @@
 							include "config.php";
 
 							$conn = sqlsrv_connect($host, $connectionInfo);
-							$sql_select = "SELECT buku.Id as ID, buku.JudulBuku as Judul, buku.Deskripsi as Deskripsi, kat.NamaKategori as Kategori, buku.Harga as Harga, pe.NamaPenerbit as Penerbit, buku.TglRilis as Rilis, buku.TglDitambahkan as Addedd FROM buku INNER JOIN Kategori kat ON buku.IdKategori = kat.IdKategori INNER JOIN Penerbit pe ON buku.IdPenerbit = pe.IdPenerbit";
+							$sql_select = "SELECT buku.Id as ID, buku.JudulBuku as Judul, buku.Deskripsi as Deskripsi, kat.NamaKategori as Kategori, CAST(buku.Harga as INT) as Harga, pe.NamaPenerbit as Penerbit, buku.TglRilis as Rilis, buku.TglDitambahkan as Addedd FROM buku INNER JOIN Kategori kat ON buku.IdKategori = kat.IdKategori INNER JOIN Penerbit pe ON buku.IdPenerbit = pe.IdPenerbit";
 							$stmt = sqlsrv_query($conn, $sql_select);
 	
 							do {

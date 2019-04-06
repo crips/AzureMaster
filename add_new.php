@@ -1,79 +1,99 @@
 <html>
-    <head>
-        <Title>Add New - Buka Buku</Title>
-        <style type="text/css">
-            body { background-color: #fff; border-top: solid 10px #000;
-                color: #333; font-size: .85em; margin: 20; padding: 20;
-                font-family: "Segoe UI", Verdana, Helvetica, Sans-Serif;
-            }
-            h1, h2, h3,{ color: #000; margin-bottom: 0; padding-bottom: 0; }
-            h1 { font-size: 2em; }
-            h2 { font-size: 1.75em; }
-            h3 { font-size: 1.2em; }
-            table { margin-top: 0.75em; }
-            th { font-size: 1.2em; text-align: left; border: none; padding-left: 0; }
-            td { padding: 0.25em 2em 0.25em 0em; border: 0 none; }
-        </style>
-    </head>
-    
-    <body>
-    <h1>Tambah Buku Baru</h1>    
-    
-    <form method="post" action="index.php" enctype="multipart/form-data" >
-        Name  <input type="text" name="name" id="name"/></br></br>
-        Email <input type="text" name="email" id="email"/></br></br>
-        Job <input type="text" name="job" id="job"/></br></br>
-        <input type="submit" name="submit" value="Submit" />
-        <input type="submit" name="load_data" value="Load Data" />
-    </form>
+<head>
+   <!-- Required meta tags -->
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <?php
-        if (isset($_POST['submit'])) {
-            try {
-                $name = $_POST['name'];
-                $email = $_POST['email'];
-                $job = $_POST['job'];
-                $date = date("Y-m-d");
+   <title>Bukabuku</title>
 
-                // Insert data
-                $sql_insert = "INSERT INTO Registration (name, email, job, date) VALUES (?,?,?,?)";
-                $stmt = $conn->prepare($sql_insert);
-                $stmt->bindValue(1, $name);
-                $stmt->bindValue(2, $email);
-                $stmt->bindValue(3, $job);
-                $stmt->bindValue(4, $date);
-                $stmt->execute();
-            } catch(Exception $e) {
-                echo "Failed: " . $e;
-            }
-            echo "<h3>Your're registered!</h3>";
-        } else if (isset($_POST['load_data'])) {
-            try {
-                $sql_select = "SELECT * FROM Registration";
-                $stmt = $conn->query($sql_select);
-                $registrants = $stmt->fetchAll(); 
-                if(count($registrants) > 0) {
-                    echo "<h2>People who are registered:</h2>";
-                    echo "<table>";
-                    echo "<tr><th>Name</th>";
-                    echo "<th>Email</th>";
-                    echo "<th>Job</th>";
-                    echo "<th>Date</th></tr>";
-                    foreach($registrants as $registrant) {
-                        echo "<tr><td>".$registrant['name']."</td>";
-                        echo "<td>".$registrant['email']."</td>";
-                        echo "<td>".$registrant['job']."</td>";
-                        echo "<td>".$registrant['date']."</td></tr>";
-                    }
-                    echo "</table>";
-                } else {
-                    echo "<h3>No one is currently registered.</h3>";
-                }
-            } catch(Exception $e) {
-                echo "Failed: " . $e;
-            }
-        }
-        ?>
-        </body>
-    </html>
-?>
+   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+   <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+   <link rel="stylesheet" href="/resources/demos/style.css">
+   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+   
+   <script>
+		$( function() {
+			$( "#datepicker" ).datepicker();
+		} );
+	</script>
+</head>
+
+ <body>
+	 <div class="containermt-3">
+		<div class="row">
+			<div class="col-sm-12">
+				 <button type="button" class="btn btn-primary btnTambahData" data-toggle="modal"  data-target="#exampleModal" data-zurl="https://bukabuku.azurewebsites.net/add_new.php">Tambah Buku</button>
+				 <button type="button" class="btn btn-primary btnTambahData" data-toggle="modal"  data-target="#exampleModal" data-zurl="https://bukabuku.azurewebsites.net/kategoriku.php">Kategori Buku</button>
+				 <button type="button" class="btn btn-primary btnTambahData" data-toggle="modal"  data-target="#exampleModal" data-zurl="https://bukabuku.azurewebsites.net/penerbitan.php">Penerbit</button>
+
+				 <div  class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+					<div class="modal-dialog" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title" id="exampleModalLabel">Tambah Buku Baru</h5>
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+
+							<div class="modal-body">
+								<form action="add_new.php" method="POST" enctype="multipart/form-data">
+									<div class="form-group">
+										<label for="JudulBuku">Judul Buku</label>
+										<input type="text" name="JudulBuku" id="JudulBuku" class="form-control" required="true">
+									</div>
+									<div class="form-group">
+										<label for="Deskripsi">Deskripsi</label>
+										<input type="text" name="Deskripsi" id="Deskripsi" class="form-control" required="true">
+									</div>
+									<div class="form-group">
+										<label for="IdKategori">Kategori</label>
+										<select name="IdKategori" id="IdKategori" class="form-control" required="true">
+											<option>Pilih Kategori</option>
+											<option>Komedi</option>
+											<option>Drama</option>
+											<option>Slice of Life</option>
+											<option>Romance</option>
+											<option>Action</option>
+										</select>
+									</div>
+									<div class="form-group">
+										<label for="Harga">Harga</label>
+										<input type="text" name="Harga" id="Harga" class="form-control" required="true">
+									</div>
+									
+									<div class="form-group">
+										<label for="IdPenerbit">Penerbit</label>
+										<select name="IdPenerbit" id="IdPenerbit" class="form-control" required="true">
+											<option>Pilih Penerbit</option>
+											<option>Elexmedia</option>
+											<option>Gagasmedia</option>
+											<option>Bukune</option>
+											<option>Mizan</option>
+										</select>
+									</div>
+									<div class="form-group">
+										<label for="TglRilis">Tanggal Rilis</label>
+										<input type="text" name="TglRilis" id="TglRilis" class="form-control" required="true">
+									</div>
+									<div class="form-group">
+										<label for="TglDitambahkan">Tanggal Ditambahkan</label>
+										<input type="text" name="TglDitambahkan" id="TglDitambahkan" class="form-control" required="true">
+									</div>
+								</form>
+							</div>
+
+							<div class="modal-footer">
+								<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+								<button type="submit" class="btn btn-primary">Simpan</button>
+							</div>
+						</div>
+					</div>
+				 </div>
+			</div>
+		</div>
+	 </div>    
+ </body>
+ </html>
