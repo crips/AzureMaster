@@ -8,6 +8,18 @@
 
    <!-- Bootstrap CSS -->
    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <title>jQuery UI Datepicker - Default functionality</title>
+   <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+   <link rel="stylesheet" href="/resources/demos/style.css">
+   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+   
+   <script>
+		$( function() {
+			$( "#datepicker" ).datepicker();
+		} );
+	</script>
 
    <title>Submission Azure</title>
 </head>
@@ -18,16 +30,34 @@
 
       <form action="index.php" method="post">
          <div class="form-group">
-            <label for="name">Your Name</label>
-            <input type="text" name="name" class="form-control">
+            <label for="JudulBuku">Judul</label>
+            <input type="text" name="JudulBuku" class="form-control">
          </div>
          <div class="form-group">
-            <label for="email">Your Email</label>
-            <input type="email" name="email" class="form-control">
+            <label for="Deskripsi">Deskripsi</label>
+            <input type="text" name="Deskripsi" class="form-control">
          </div>
          <div class="form-group">
-            <label for="job">Your Job</label>
-            <input type="text" name="job" class="form-control">
+            <label for="Kategori">Kategori</label>
+			<select>
+				<option value="" disabled="disabled" selected="select">Pilih Kategori</option>
+				<option value="1">Elexmedia Komputindo</option>
+				<option value="2">Gagasmedia</option>
+				<option value="3">Mizan</option>
+				<option value="4">Bukune</option>
+			</select>
+         </div>
+         <div class="form-group">
+            <label for="Harga">Harga</label>
+            <input type="text" name="Harga" class="form-control">
+         </div>
+         <div class="form-group">
+            <label for="Penerbit">Penerbit</label>
+            <input type="text" name="Penerbit" class="form-control">
+         </div>
+         <div class="form-group">
+            <label for="TglRilis">Tanggal Rilis</label>
+            <input type="text" id="datepicker" class="form-control">
          </div>
          <input type="submit" name="simpan" class="btn btn-primary btn-md">
       </form>
