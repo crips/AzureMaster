@@ -31,8 +31,10 @@
          </div>
          <input type="submit" name="simpan" class="btn btn-primary btn-md">
       </form>
+      
       <?php
 
+	   /*
       $host = "tcp:bukabuku.database.windows.net, 1433";
       $user = "mafrizal";
       $pass = "Timpakul2016+";
@@ -65,6 +67,7 @@
          }
          echo "<h3>Your're registered!</h3>";
       }
+      */
       ?>
       <table class="table table-responsive mt-3">
          <thead>
