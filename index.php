@@ -24,29 +24,28 @@
 	 <div class="containermt-3">
 		<div class="row">
 			<div class="col-sm-12">
-				 <button type="button" class="btn btn-primary btnTambahData" data-toggle="modal"  data-target="#exampleModal" data-zurl="https://bukabuku.azurewebsites.net/add_new.php">Tambah Buku</button>
-				 <button type="button" class="btn btn-primary btnTambahData" data-toggle="modal"  data-target="#exampleModal" data-zurl="https://bukabuku.azurewebsites.net/kategoriku.php">Kategori Buku</button>
-				 <button type="button" class="btn btn-primary btnTambahData" data-toggle="modal"  data-target="#exampleModal" data-zurl="https://bukabuku.azurewebsites.net/penerbitan.php">Penerbit</button>
+				 <input type="submit" class="btn btn-primary btnTambahData" data-toggle="modal" href="https://bukabuku.azurewebsites.net/add_new.php">Tambah Buku</input>
+				 <input type="submit" class="btn btn-primary btnTambahData" data-toggle="modal" href="https://bukabuku.azurewebsites.net/kategoriku.php">Kategori Buku</input>
+				 <input type="submit" class="btn btn-primary btnTambahData" data-toggle="modal" href="https://bukabuku.azurewebsites.net/penerbitan.php">Penerbit</input>
 
 				 <h1>Katalog Buku</h1>
 				 <table class="table table-stripped">
 					<thead>
 						<tr>
-							<th>ID</th>
-							<th>Judul</th>
-							<th>Deskripsi</th>
-							<th>Kategori</th>
-							<th>Harga</th>
-							<th>Penerbit</th>
-							<th>Tgl Rilis</th>
-							<th>Tgl Ditambahkan</th>
+							<th scope="col">ID</th>
+							<th scope="col">Judul</th>
+							<th scope="col">Deskripsi</th>
+							<th scope="col">Kategori</th>
+							<th scope="col">Harga</th>
+							<th scope="col">Penerbit</th>
+							<th scope="col">Tgl Rilis</th>
+							<th scope="col">Tgl Ditambahkan</th>
 						</tr>
 					</thead>
 
 					<tbody>
 						<?php
 							include "config.php";
-
 							$conn = sqlsrv_connect($host, $connectionInfo);
 							$sql_select = "SELECT buku.Id as ID, buku.JudulBuku as Judul, buku.Deskripsi as Deskripsi, kat.NamaKategori as Kategori, CAST(buku.Harga as INT) as Harga, pe.NamaPenerbit as Penerbit, buku.TglRilis as Rilis, buku.TglDitambahkan as Addedd FROM buku INNER JOIN Kategori kat ON buku.IdKategori = kat.IdKategori INNER JOIN Penerbit pe ON buku.IdPenerbit = pe.IdPenerbit";
 							$stmt = sqlsrv_query($conn, $sql_select);
