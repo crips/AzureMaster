@@ -62,8 +62,8 @@
 										<td><? echo $row['Kategori'];?></td>
 										<td><? echo $row['Harga'];?></td>
 										<td><? echo $row['Penerbit'];?></td>
-										<td><? echo $row['Penerbit'];?></td>
-										<td><? echo $row['Penerbit'];?></td>
+										<td><? echo $row['Rilis'];?></td>
+										<td><? echo $row['Addedd'];?></td>
 									</tr>
 									<?
 							}
