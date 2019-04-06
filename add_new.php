@@ -24,9 +24,9 @@
 	 <div class="containermt-3">
 		<div class="row">
 			<div class="col-sm-12">
-				 <button type="button" class="btn btn-primary btnTambahData" data-toggle="modal"  data-target="#exampleModal" data-zurl="https://bukabuku.azurewebsites.net/add_new.php">Tambah Buku</button>
-				 <button type="button" class="btn btn-primary btnTambahData" data-toggle="modal"  data-target="#exampleModal" data-zurl="https://bukabuku.azurewebsites.net/kategoriku.php">Kategori Buku</button>
-				 <button type="button" class="btn btn-primary btnTambahData" data-toggle="modal"  data-target="#exampleModal" data-zurl="https://bukabuku.azurewebsites.net/penerbitan.php">Penerbit</button>
+				 <button type="button" class="btn btn-primary btnTambahData" data-toggle="modal" type="submit" data-zurl="https://bukabuku.azurewebsites.net/add_new.php">Tambah Buku</button>
+				 <button type="button" class="btn btn-primary btnTambahData" data-toggle="modal" type="submit" data-zurl="https://bukabuku.azurewebsites.net/kategoriku.php">Kategori Buku</button>
+				 <button type="button" class="btn btn-primary btnTambahData" data-toggle="modal" type="submit" data-zurl="https://bukabuku.azurewebsites.net/penerbitan.php">Penerbit</button>
 
 				 <div  class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 					<div class="modal-dialog" role="document">
