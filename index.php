@@ -29,70 +29,36 @@
  </form>
 
  <?php
-    $host = "tcp:bukabuku.database.windows.net, 1433";
-	$user = "mafrizal";
-    $pass = "Timpakul2016+";
-    $db = "bukabuku";
-    try {
-		$con = new PDO("sqlsrv:Server = $host; Database = $db", $user, $pass);
-        $con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    } catch (Exception $e) {
-		echo "Failed : " . $e;
-    }
+    include "config.php";
 
-	if (isset($_POST['submit'])) {
-        try {
-            $name = $_POST['name'];
-            $email = $_POST['email'];
-            $job = $_POST['job'];
-            $date = date("Y-m-d");
-
-            $sql_insert = "INSERT INTO Registration (name, email, job, date) VALUES (?,?,?,?)";
-            $stmt = $conn->prepare($sql_insert);
-            $stmt->bindValue(1, $name);
-            $stmt->bindValue(2, $email);
-            $stmt->bindValue(3, $job);
-            $stmt->bindValue(4, $date);
-            $stmt->execute();
-        } catch(Exception $e) {
-            echo "Failed: " . $e;
+	$sql_select = "SELECT buku.Id as ID, buku.JudulBuku as Judul, buku.Deskripsi as Deskripsi, kat.NamaKategori as Kategori, buku.Harga as Harga, pe.NamaPenerbit as Penerbit, buku.TglRilis as Rilis, buku.TglDitambahkan as Addedd FROM buku INNER JOIN Kategori kat ON buku.IdKategori = kat.IdKategori INNER JOIN Penerbit pe ON buku.IdPenerbit = pe.IdPenerbit";
+	$stmt = $conn->query($sql_select);
+	$registrants = $stmt->fetchAll(); 
+    if(count($registrants) > 0) {
+		echo "<h2>Daftar Buku:</h2>";
+		echo "<table>";
+		echo "<tr><th>ID</th>";
+        echo "<tr><th>Judul</th>";
+        echo "<th>Deskripsi</th>";
+		echo "<th>Kategori</th>";
+        echo "<th>Harga</th>";
+        echo "<th>Penerbit</th>";
+		echo "<th>Tgl Rilis</th>";                
+        echo "<th>Tgl Ditambahkan</th></tr>";
+		foreach($registrants as $registrant) {
+			echo "<tr><td>".$registrant['ID']."</td>";
+            echo "<td>".$registrant['JudulBuku']."</td>";
+            echo "<td>".$registrant['Deskripsi']."</td>";
+            echo "<td>".$registrant['Kategori']."</td>";
+            echo "<td>".$registrant['Harga']."</td>";
+            echo "<td>".$registrant['Penerbit']."</td>";
+            echo "<td>".$registrant['Rilis']."</td>";
+            echo "<td>".$registrant['Addedd']."</td></tr>";
         }
-        echo "<h3>Your're registered!</h3>";
-    } else if (isset($_POST['load_data'])) {
-        try {
-            //$sql_select = "SELECT buku.Id as ID, buku.JudulBuku as Judul, buku.Deskripsi as Deskripsi, kat.NamaKategori as Kategori, buku.Harga as Harga, pe.NamaPenerbit as Penerbit, buku.TglRilis as Rilis, buku.TglDitambahkan as Addedd FROM buku INNER JOIN Kategori kat ON buku.IdKategori = kat.IdKategori INNER JOIN Penerbit pe ON buku.IdPenerbit = pe.IdPenerbit";
-			$sql_select = "SELECT * FROM Buku";
-            $stmt = $conn->query($sql_select);
-            $registrants = $stmt->fetchAll(); 
-            //if(count($registrants) > 0) {
-                echo "<h2>Daftar Buku:</h2>";
-                echo "<table>";
-                echo "<tr><th>ID</th>";
-                echo "<tr><th>Judul</th>";
-                echo "<th>Deskripsi</th>";
-                echo "<th>Kategori</th>";
-                echo "<th>Harga</th>";
-                echo "<th>Penerbit</th>";
-                echo "<th>Tgl Rilis</th>";                
-                echo "<th>Tgl Ditambahkan</th></tr>";
-                foreach($registrants as $registrant) {
-                    echo "<tr><td>".$registrant['Id']."</td>";
-                    echo "<td>".$registrant['JudulBuku']."</td>";
-                    echo "<td>".$registrant['Deskripsi']."</td>";
-                    echo "<td>".$registrant['IdKategori']."</td>";
-                    echo "<td>".$registrant['Harga']."</td>";
-                    echo "<td>".$registrant['IdPenerbit']."</td>";
-                    echo "<td>".$registrant['TglRilis']."</td>";
-                    echo "<td>".$registrant['TglDitambahkan']."</td></tr>";
-                }
-                echo "</table>";
-		  //} else {
-                //echo "<h3>Tidak Ada Buku Terdata</h3>";
-            //}
-        } catch(Exception $e) {
-            echo "Failed: " . $e;
-        }
-    }
+		echo "</table>";
+	} else {
+		echo "<h3>Tidak Ada Buku Terdata</h3>";
+	}
  ?>
  </body>
  </html>
