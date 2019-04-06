@@ -58,6 +58,7 @@
             <input type="text" id="datepicker" class="form-control">
          </div>
          <input type="submit" name="simpan" class="btn btn-primary btn-md">
+		 <input type="submit" name="load_data" class="btn btn-primary btn-md">
       </form>
       
       <?php
