@@ -1,38 +1,92 @@
-<html>
-    <head>
-        <Title>Home - Buka Buku</Title>
-        <style type="text/css">
-            body { background-color: #fff; border-top: solid 10px #000;
-                color: #333; font-size: .85em; margin: 20; padding: 20;
-                font-family: "Segoe UI", Verdana, Helvetica, Sans-Serif;
-            }
-            h1, h2, h3,{ color: #000; margin-bottom: 0; padding-bottom: 0; }
-            h1 { font-size: 2em; }
-            h2 { font-size: 1.75em; }
-            h3 { font-size: 1.2em; }
-            table { margin-top: 0.75em; }
-            th { font-size: 1.2em; text-align: left; border: none; padding-left: 0; }
-            td { padding: 0.25em 2em 0.25em 0em; border: 0 none; }
-        </style>
-    </head>
-    
-    <body>
-    <?php
-		$serverName = "tcp:bukabuku.database.windows.net,1433";
-		$dbName = "bukabuku";
-		$uname = "mafrizal";
-		$passwd = "Timpakul2016+";
+<!doctype html>
+<html lang="en">
 
-		try {
-			$conn = new PDO("sqlsrv:server = $serverName; Database = $dbName", $uname, $passwd);
-			$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-		}
-		catch (PDOException $e) {
-			die(print_r($e));
-		}
+<head>
+   <!-- Required meta tags -->
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-		//$connectionInfo = array("UID" => "mafrizal@bukabuku", "pwd" => "Timpakul2016+", "Database" => "bukabuku", "LoginTimeout" => 60, "Encrypt" => 1, "TrustServerCertificate" => 0);
-		//$conn = sqlsrv_connect($serverName, $connectionInfo);
-	?>
-	</body>
+   <!-- Bootstrap CSS -->
+   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+   <title>Submission Azure</title>
+</head>
+
+<body>
+   <div class="container mt-3">
+      <h1 class="center">Register Here</h1>
+
+      <form action="index.php" method="post">
+         <div class="form-group">
+            <label for="name">Your Name</label>
+            <input type="text" name="name" class="form-control">
+         </div>
+         <div class="form-group">
+            <label for="email">Your Email</label>
+            <input type="email" name="email" class="form-control">
+         </div>
+         <div class="form-group">
+            <label for="job">Your Job</label>
+            <input type="text" name="job" class="form-control">
+         </div>
+         <input type="submit" name="simpan" class="btn btn-primary btn-md">
+      </form>
+      <?php
+      $host = "bukabuku.database.windows.net, 1433";
+      $user = "mafrizal";
+      $pass = "Timpakul2016+";
+      $db = "bukabuku";
+      try {
+         $con = new PDO("sqlsrv:Server = $host; Database = $db", $user, $pass);
+         $con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+      } catch (Exception $e) {
+         echo "Failed : " . $e;
+      }
+      if (isset($_POST['simpan'])) {
+         try {
+            $Judul = $_POST['JudulBuku'];
+            $Deskripsi = $_POST['Deskripsi'];
+            $IdKategori = $_POST['IdKategori'];
+			$Harga = $POST['Harga']
+			$IdPenerbit = $POST['IdPenerbit']
+			$TglRilis = $POST['TglRilis']
+            $query = "INSERT INTO Buku (JudulBuku, Deskripsi, IdKategori, Harga, IdPenerbit, TglRilis) VALUES ('$Judul', '$Deskripsi', '$IdKategori', '$Harga', '$IdPenerbit', '$TglRilis')";
+            $stmt = $conn->prepare($query);
+            $stmt->bindValue(1, $Judul);
+            $stmt->bindValue(2, $Deskripsi);
+            $stmt->bindValue(3, $IdKategori);
+            $stmt->bindValue(4, $Harga);
+            $stmt->bindValue(5, $IdPenerbit);
+            $stmt->bindValue(6, $TglRilis);
+            $stmt->execute();
+         } catch (Exception $e) {
+            echo "Failed" . $e;
+         }
+         echo "<h3>Your're registered!</h3>";
+      }
+      ?>
+      <table class="table table-responsive mt-3">
+         <thead>
+            <tr>
+               <th>Judul</th>
+               <th>Deskripsi</th>
+               <th>Harga</th>
+               <th>Kategori</th>
+               <th>Penerbit</th>
+               <th>Tahun Rilis</th>
+               <th>Tahun Ditambahkan</th>
+            </tr>
+         </thead>
+         <tbody>
+
+         </tbody>
+      </table>
+   </div>
+   <!-- Optional JavaScript -->
+   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+   <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+
 </html>
