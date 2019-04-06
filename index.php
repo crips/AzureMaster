@@ -43,28 +43,7 @@
       } catch (Exception $e) {
          echo "Failed : " . $e;
       }
-      if (isset($_POST['simpan'])) {
-         try {
-            $Judul = $_POST['JudulBuku'];
-            $Deskripsi = $_POST['Deskripsi'];
-            $IdKategori = $_POST['IdKategori'];
-			$Harga = $POST['Harga']
-			$IdPenerbit = $POST['IdPenerbit']
-			$TglRilis = $POST['TglRilis']
-            $query = "INSERT INTO Buku (JudulBuku, Deskripsi, IdKategori, Harga, IdPenerbit, TglRilis) VALUES ('$Judul', '$Deskripsi', '$IdKategori', '$Harga', '$IdPenerbit', '$TglRilis')";
-            $stmt = $conn->prepare($query);
-            $stmt->bindValue(1, $Judul);
-            $stmt->bindValue(2, $Deskripsi);
-            $stmt->bindValue(3, $IdKategori);
-            $stmt->bindValue(4, $Harga);
-            $stmt->bindValue(5, $IdPenerbit);
-            $stmt->bindValue(6, $TglRilis);
-            $stmt->execute();
-         } catch (Exception $e) {
-            echo "Failed" . $e;
-         }
-         echo "<h3>Your're registered!</h3>";
-      } else if (isset($_POST['load_data'])) {
+      if (isset($_POST['load_data'])) {
             try {
                 $sql_select = "SELECT buku.Id as ID, buku.JudulBuku as Judul, buku.Deskripsi as Deskripsi, kat.NamaKategori as Kategori, buku.Harga as Harga, pe.NamaPenerbit as Penerbit, buku.TglRilis as Rilis, buku.TglDitambahkan as Addedd FROM buku INNER JOIN Kategori kat ON buku.IdKategori = kat.IdKategori INNER JOIN Penerbit pe ON buku.IdPenerbit = pe.IdPenerbit";
                 $stmt = $conn->query($sql_select);
@@ -95,7 +74,7 @@
             } catch(Exception $e) {
                 echo "Failed: " . $e;
             }
-        }
+      }
       ?>
       <table class="table table-responsive mt-3">
          <thead>
