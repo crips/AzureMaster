@@ -24,9 +24,9 @@
 	 <div class="containermt-3">
 		<div class="row">
 			<div class="col-sm-12">
-				 <input type="submit" class="btn btn-primary btnTambahData" data-toggle="modal" href="https://bukabuku.azurewebsites.net/add_new.php">Tambah Buku</input>
-				 <input type="submit" class="btn btn-primary btnTambahData" data-toggle="modal" href="https://bukabuku.azurewebsites.net/kategoriku.php">Kategori Buku</input>
-				 <input type="submit" class="btn btn-primary btnTambahData" data-toggle="modal" href="https://bukabuku.azurewebsites.net/penerbitan.php">Penerbit</input>
+				 <button type="button" class="btn btn-primary btnTambahData" data-toggle="modal"><a href="https://bukabuku.azurewebsites.net/add_new.php">Tambah Buku</a></button>
+				 <button type="button" class="btn btn-primary btnTambahData" data-toggle="modal" href="https://bukabuku.azurewebsites.net/kategoriku.php">Kategori Buku</button>
+				 <button type="button" class="btn btn-primary btnTambahData" data-toggle="modal" href="https://bukabuku.azurewebsites.net/penerbitan.php">Penerbit</button>
 
 				 <h1>Katalog Buku</h1>
 				 <table class="table table-stripped">
