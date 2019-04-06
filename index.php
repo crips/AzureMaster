@@ -28,38 +28,31 @@
        <input type="submit" name="load_data" value="Load Data" />
  </form>
 
- <?php
+	<?php
     include "config.php";
 
+	$conn = sqlsrv_connect($host, $connectionInfo);
 	$sql_select = "SELECT buku.Id as ID, buku.JudulBuku as Judul, buku.Deskripsi as Deskripsi, kat.NamaKategori as Kategori, buku.Harga as Harga, pe.NamaPenerbit as Penerbit, buku.TglRilis as Rilis, buku.TglDitambahkan as Addedd FROM buku INNER JOIN Kategori kat ON buku.IdKategori = kat.IdKategori INNER JOIN Penerbit pe ON buku.IdPenerbit = pe.IdPenerbit";
-	$stmt = $conn->query($sql_select);
-	$registrants = $stmt->fetchAll(); 
-    
-	if(count($registrants) >= 0) {
-		echo "<h2>Daftar Buku:</h2>";
-		echo "<table>";
-		echo "<tr><th>ID</th>";
-        echo "<tr><th>Judul</th>";
-        echo "<th>Deskripsi</th>";
-		echo "<th>Kategori</th>";
-        echo "<th>Harga</th>";
-        echo "<th>Penerbit</th>";
-		echo "<th>Tgl Rilis</th>";                
-        echo "<th>Tgl Ditambahkan</th></tr>";
-		foreach($registrants as $registrant) {
-			echo "<tr><td>".$registrant['ID']."</td>";
-            echo "<td>".$registrant['JudulBuku']."</td>";
-            echo "<td>".$registrant['Deskripsi']."</td>";
-            echo "<td>".$registrant['Kategori']."</td>";
-            echo "<td>".$registrant['Harga']."</td>";
-            echo "<td>".$registrant['Penerbit']."</td>";
-            echo "<td>".$registrant['Rilis']."</td>";
-            echo "<td>".$registrant['Addedd']."</td></tr>";
-        }
-		echo "</table>";
-	} else {
-		echo "<h3>Tidak Ada Buku Terdata</h3>";
+	$stmt = sqlsrv_query($conn, $sql_select);
+	
+	do {
+		while ($row = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC)) {
+			?>
+			<tr>
+				<td><?= $row['ID'];?></td>
+				<td><?= $row['Judul'];?></td>
+				<td><?= $row['Deskripsi'];?></td>
+				<td><?= $row['Kategori'];?></td>
+				<td><?= $row['Harga'];?></td>
+				<td><?= $row['Penerbit'];?></td>
+				<td><?= $row['Rilis'];?></td>
+				<td><?= $row['Addedd'];?></td>
+			</tr>
+			<?
+		}
 	}
- ?>
+	while (sqlsrv_next_result($stmt));
+	?>
+    
  </body>
  </html>
