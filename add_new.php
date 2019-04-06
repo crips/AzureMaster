@@ -23,22 +23,17 @@
  <body>
 	 <div class="containermt-3">
 		<div class="row">
-			<div class="col-sm-12">
-				 <input type="submit" class="btn btn-primary btnTambahData" data-toggle="modal" href="https://bukabuku.azurewebsites.net/add_new.php">Tambah Buku</input>
-				 <input type="submit" class="btn btn-primary btnTambahData" data-toggle="modal" href="https://bukabuku.azurewebsites.net/kategoriku.php">Kategori Buku</input>
-				 <input type="submit" class="btn btn-primary btnTambahData" data-toggle="modal" href="https://bukabuku.azurewebsites.net/penerbitan.php">Penerbit</input>
+			<div class="col-sm-12">				
+				 <button type="button" class="btn btn-primary btnTambahData" data-toggle="modal" onclick="document.location.href='https://bukabuku.azurewebsites.net/add_new.php'">Tambah Buku</button>
+				 <button type="button" class="btn btn-primary btnTambahData" data-toggle="modal" onclick="document.location.href='https://bukabuku.azurewebsites.net/kategoriku.php'">Kategori Buku</button>
+				 <button type="button" class="btn btn-primary btnTambahData" data-toggle="modal" onclick="document.location.href='https://bukabuku.azurewebsites.net/penerbitan.php'">Penerbit Buku</button>
 
 				 <div  class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 					<div class="modal-dialog" role="document">
 						<div class="modal-content">
 							<div class="modal-header">
 								<h5 class="modal-title" id="exampleModalLabel">Tambah Buku Baru</h5>
-								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-									<span aria-hidden="true">&times;</span>
-								</button>
-							</div>
 
-							<div class="modal-body">
 								<form action="add_new.php" method="POST" enctype="multipart/form-data">
 									<div class="form-group">
 										<label for="JudulBuku">Judul Buku</label>
