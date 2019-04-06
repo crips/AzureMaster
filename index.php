@@ -60,7 +60,8 @@
         echo "<h3>Your're registered!</h3>";
     } else if (isset($_POST['load_data'])) {
         try {
-            $sql_select = "SELECT buku.Id as ID, buku.JudulBuku as Judul, buku.Deskripsi as Deskripsi, kat.NamaKategori as Kategori, buku.Harga as Harga, pe.NamaPenerbit as Penerbit, buku.TglRilis as Rilis, buku.TglDitambahkan as Addedd FROM buku INNER JOIN Kategori kat ON buku.IdKategori = kat.IdKategori INNER JOIN Penerbit pe ON buku.IdPenerbit = pe.IdPenerbit";
+            //$sql_select = "SELECT buku.Id as ID, buku.JudulBuku as Judul, buku.Deskripsi as Deskripsi, kat.NamaKategori as Kategori, buku.Harga as Harga, pe.NamaPenerbit as Penerbit, buku.TglRilis as Rilis, buku.TglDitambahkan as Addedd FROM buku INNER JOIN Kategori kat ON buku.IdKategori = kat.IdKategori INNER JOIN Penerbit pe ON buku.IdPenerbit = pe.IdPenerbit";
+			$sql_select = "SELECT * FROM Buku";
             $stmt = $conn->query($sql_select);
             $registrants = $stmt->fetchAll(); 
             if(count($registrants) > 0) {
@@ -75,14 +76,14 @@
                 echo "<th>Tgl Rilis</th>";                
                 echo "<th>Tgl Ditambahkan</th></tr>";
                 foreach($registrants as $registrant) {
-                    echo "<tr><td>".$registrant['ID']."</td>";
+                    echo "<tr><td>".$registrant['Id']."</td>";
                     echo "<td>".$registrant['JudulBuku']."</td>";
                     echo "<td>".$registrant['Deskripsi']."</td>";
-                    echo "<td>".$registrant['Kategori']."</td>";
+                    echo "<td>".$registrant['IdKategori']."</td>";
                     echo "<td>".$registrant['Harga']."</td>";
-                    echo "<td>".$registrant['Penerbit']."</td>";
-                    echo "<td>".$registrant['Rilis']."</td>";
-                    echo "<td>".$registrant['Addedd']."</td></tr>";
+                    echo "<td>".$registrant['IdPenerbit']."</td>";
+                    echo "<td>".$registrant['TglRilis']."</td>";
+                    echo "<td>".$registrant['TglDitambahkan']."</td></tr>";
                 }
                 echo "</table>";
 		  } else {
