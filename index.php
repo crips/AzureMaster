@@ -24,7 +24,8 @@
 	 <div class="containermt-3">
 		<div class="row">
 			<div class="col-sm-12">
-				 <button type="button" class="btn btn-primary btnTambahData" data-toggle="modal" onclick="document.location.href='https://bukabuku.azurewebsites.net/add_new.php'">Tambah Buku</button>
+				 <!--<button type="button" class="btn btn-primary btnTambahData" data-toggle="modal" onclick="document.location.href='https://bukabuku.azurewebsites.net/add_new.php'">Tambah Buku</button>-->
+				 <button type="button" class="btn btn-primary btnTambahData" data-toggle="modal" onclick="document.location.href='https://bukabuku.azurewebsites.net/insert.php'">Tambah Buku</button>
 				 <button type="button" class="btn btn-primary btnTambahData" data-toggle="modal" onclick="document.location.href='https://bukabuku.azurewebsites.net/kategoriku.php'">Kategori Buku</button>
 				 <button type="button" class="btn btn-primary btnTambahData" data-toggle="modal" onclick="document.location.href='https://bukabuku.azurewebsites.net/penerbitan.php'">Penerbit Buku</button>
 
