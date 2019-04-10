@@ -35,7 +35,7 @@
 								<h5 class="modal-title" id="exampleModalLabel">Tambah Buku Baru</h5>								
 							</div>
 
-							<div class="modal-content">
+							<div class="modal-body">
 								<form action="add_new.php" method="POST" enctype="multipart/form-data">
 									<?
 										include "config.php";
@@ -90,13 +90,13 @@
 										<label for="TglDitambahkan">Tanggal Ditambahkan</label>
 										<input type="text" name="TglDitambahkan" id="TglDitambahkan" class="form-control" required="true">
 									</div>
-								</form>								
-							</div>
 
-							<div class="modal-footer">
-								<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-								<button type="submit" class="btn btn-primary">Simpan</button>
-							</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+										<button type="submit" class="btn btn-primary">Simpan</button>
+									</div>
+								</form>								
+							</div>						
 						</div>
 					</div>
 				 </div>

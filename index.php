@@ -1,105 +1,79 @@
 <html>
 <head>
-    <title>CRUD PHP - SQL Server</title>
-    <link rel="stylesheet" href="css/bootstrap.css" />
+   <!-- Required meta tags -->
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+
+   <title>Bukabuku</title>
+
+   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+   <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+   <link rel="stylesheet" href="/resources/demos/style.css">
+   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+   
+   <script>
+		$( function() {
+			$( "#datepicker" ).datepicker();
+		} );
+	</script>
 </head>
 
-<body>  
-    <div class="container mt-3">
-        <div class="row">
-            <div class="col-sm-12">
-                <button type="button" class="btn btn-primary btnTambahData" data-toggle="modal" data-target="#exampleModal" data-zurl="">
-					Tambah Barang
-				</button>
+ <body>
+	 <div class="containermt-3">
+		<div class="row">
+			<div class="col-sm-12">
+				 <!--<button type="button" class="btn btn-primary btnTambahData" data-toggle="modal" onclick="document.location.href='https://bukabuku.azurewebsites.net/add_new.php'">Tambah Buku</button>-->
+				 <button type="button" class="btn btn-primary btnTambahData" data-toggle="modal" onclick="document.location.href='https://bukabuku.azurewebsites.net/insert.php'">Tambah Buku</button>
+				 <button type="button" class="btn btn-primary btnTambahData" data-toggle="modal" onclick="document.location.href='https://bukabuku.azurewebsites.net/kategoriku.php'">Kategori Buku</button>
+				 <button type="button" class="btn btn-primary btnTambahData" data-toggle="modal" onclick="document.location.href='https://bukabuku.azurewebsites.net/penerbitan.php'">Penerbit Buku</button>
 
-                <h1>Data Barang</h1>
-                <table class="table table-stripped">
-                    <thead>
+				 <h1>Katalog Buku</h1>
+				 <table class="table table-stripped">
+					<thead>
+						<tr>
+							<th scope="col">ID</th>
+							<th scope="col">Judul</th>
+							<th scope="col">Deskripsi</th>
+							<th scope="col">Kategori</th>
+							<th scope="col">Harga</th>
+							<th scope="col">Penerbit</th>
+							<th scope="col">Tgl Rilis</th>
+							<th scope="col">Tgl Ditambahkan</th>
+						</tr>
+					</thead>
 
-                        <tr>
-                            <th scope="col">Nama</th>
-                            <th scope="col">Nama Barang</th>
-                            <th scope="col">Satuan</th>
-                            <th scope="col" width="200px">Action</th>
-                        </tr>
-                    </thead>
-               </table>        
-            </div>
-        </div>
-    </div>
+					<tbody>
+						<?php
+							include "config.php";
+							
+							$conn = sqlsrv_connect($host, $connectionInfo);
+							$sql_select = "SELECT buku.Id as ID, buku.JudulBuku as Judul, buku.Deskripsi as Deskripsi, kat.NamaKategori as Kategori, CAST(buku.Harga as INT) as Harga, pe.NamaPenerbit as Penerbit, buku.TglRilis as Rilis, buku.TglDitambahkan as Addedd FROM buku INNER JOIN Kategori kat ON buku.IdKategori = kat.IdKategori INNER JOIN Penerbit pe ON buku.IdPenerbit = pe.IdPenerbit";
+							$stmt = sqlsrv_query($conn, $sql_select);							
 
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Tambah Barang</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-				
-                <div class="modal-body">
-                    <form action="simpan.php" method="POST" enctype="multipart/form-data">
-                        <div class="form-group">
-                            <label for="kodebarang">Kode Barang</label>
-                            <input type="text" name="kodebarang" id="kodebarang" class="form-control" required="true">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="namabarang">Nama Barang</label>
-                            <input type="text" name="namabarang" id="namabarang" class="form-control" required="true">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="satuan">Satuan</label>
-                            <select name="satuan" id="satuan" class="form-control" required="true">
-                                <option>-- Pilih Satuan--</option>
-                                <option value="PC">Piece</option>
-                                <option value="KG">Kilo Gram</option>
-                                <option value="M">Meter</option>
-                            </select>
-                        </div>
-                    </div>
-					
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Simpan</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-
-    <script src="js/jquery-3.2.1.min.js"></script>
-    <script src="js/popper.min.js"></script>
-    <script src="js/bootstrap.js"></script>
-    <script type="text/javascript">
-
-        $(function(){
-        $('.btnTambahData').on('click', function(){
-            $('#exampleModalLabel').html('Tambah Data Barang');
-            $('.modal-footer button[type=submit]').html('Simpan');
-            $('.modal-body form').attr('action', 'simpan.php');
-        });
-	   
-        $('.tampilModalUbah').on('click', function(){
-            $('#exampleModalLabel').html('Ubah Data Baranng');
-            $('.modal-footer button[type=submit]').html('Ubah Data');
-            $('.modal-body form').attr('action', 'update.php');
-            const kodebarang = $(this).data('id');
-            $.ajax({
-                url: 'getdata.php',
-                data: {kodebarang : kodebarang},
-                method: 'post',
-                dataType: 'json',
-                success: function(data){
-                    $('#kodebarang').val(data[0].kodebarang);
-                    $('#namabarang').val(data[0].namabarang);
-                    $('#satuan').val(data[0].satuan);
-                }
-            });
-        });
-    })
-    </script>
-</body>
-</html>
+							do {
+								while ($row = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC)) {
+									?>
+									<tr>
+										<td><? echo $row['ID'];?></td>
+										<td><? echo $row['Judul'];?></td>
+										<td><? echo $row['Deskripsi'];?></td>
+										<td><? echo $row['Kategori'];?></td>
+										<td><? echo $row['Harga'];?></td>
+										<td><? echo $row['Penerbit'];?></td>
+										<td><? echo $row['Rilis'];?></td>
+										<td><? echo $row['Addedd'];?></td>
+									</tr>
+									<?
+								}
+							}
+							while (sqlsrv_next_result($stmt));
+						?>
+					</tbody>
+				 </table>
+			</div>
+		</div>
+	 </div>    
+ </body>
+ </html>
