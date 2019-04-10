@@ -37,28 +37,17 @@
 							</button>
 
 							<div class="modal-body">
-								<form action="add_new.php" method="POST" enctype="multipart/form-data">
-									<?
-										/*
-										include "config.php";
-
-										$conn = sqlsrv_connect($host, $connectionInfo);
-										
-										$sql_select1 = "SELECT * FROM Kategori";
-										$stmt1 = sqlsrv_query($conn, $sql_select1);
-
-										$sql_select2 = "SELECT * FROM Penerbit";
-										$stmt2 = sqlsrv_query($conn, $sql_select2);
-										*/
-									?>
+								<form action="simpan.php" method="POST" enctype="multipart/form-data">
 									<div class="form-group">
 										<label for="JudulBuku">Judul Buku</label>
 										<input type="text" name="JudulBuku" id="JudulBuku" class="form-control" required="true">
 									</div>
+
 									<div class="form-group">
 										<label for="Deskripsi">Deskripsi</label>
 										<input type="text" name="Deskripsi" id="Deskripsi" class="form-control" required="true">
 									</div>
+
 									<div class="form-group">
 										<label for="IdKategori">Kategori</label>
 										<select name="IdKategori" id="IdKategori" class="form-control" required="true">
@@ -69,6 +58,7 @@
 											<option>Action</option>
 										</select>
 									</div>
+
 									<div class="form-group">
 										<label for="Harga">Harga</label>
 										<input type="text" name="Harga" id="Harga" class="form-control" required="true">
@@ -84,21 +74,22 @@
 											<option>Mizan</option>
 										</select>
 									</div>
+
 									<div class="form-group">
 										<label for="TglRilis">Tanggal Rilis</label>
 										<input type="text" name="TglRilis" id="TglRilis" class="form-control" required="true">
 									</div>
+
 									<div class="form-group">
 										<label for="TglDitambahkan">Tanggal Ditambahkan</label>
 										<input type="text" name="TglDitambahkan" id="TglDitambahkan" class="form-control" required="true">
-									</div>
-
-									<div class="modal-footer">
-										<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-										<button type="submit" class="btn btn-primary">Simpan</button>
-									</div>
-								</form>								
-							</div>						
+									</div>									
+								</div>			
+								<div class="modal-footer">
+									<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+									<button type="submit" class="btn btn-primary">Simpan</button>
+								</div>
+							</form>
 						</div>
 					</div>
 				 </div>
