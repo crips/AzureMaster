@@ -96,5 +96,38 @@
 			</div>
 		</div>
 	 </div>    
+
+	     <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script type="text/javascript">
+
+        $(function(){
+        $('.btnTambahData').on('click', function(){
+            $('#exampleModalLabel').html('Tambah Data Barang');
+            $('.modal-footer button[type=submit]').html('Simpan');
+            $('.modal-body form').attr('action', 'simpan.php');
+        });
+	   
+        $('.tampilModalUbah').on('click', function(){
+            $('#exampleModalLabel').html('Ubah Data Baranng');
+            $('.modal-footer button[type=submit]').html('Ubah Data');
+            $('.modal-body form').attr('action', 'update.php');
+            const kodebarang = $(this).data('id');
+            $.ajax({
+                url: 'getdata.php',
+                data: {kodebarang : kodebarang},
+                method: 'post',
+                dataType: 'json',
+                success: function(data){
+                    $('#kodebarang').val(data[0].kodebarang);
+                    $('#namabarang').val(data[0].namabarang);
+                    $('#satuan').val(data[0].satuan);
+                }
+            });
+        });
+    })
+    </script>
+
  </body>
  </html>
