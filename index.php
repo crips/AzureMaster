@@ -23,32 +23,7 @@
                             <th scope="col" width="200px">Action</th>
                         </tr>
                     </thead>
-
-                    <tbody>
-                        <?php
-							include "config.php";
-							
-							$conn = sqlsrv_connect($host, $connectionInfo);
-							$sql_select = "SELECT buku.Id as ID, buku.JudulBuku as Judul, buku.Deskripsi as Deskripsi, kat.NamaKategori as Kategori, CAST(buku.Harga as INT) as Harga, pe.NamaPenerbit as Penerbit, buku.TglRilis as Rilis, buku.TglDitambahkan as Addedd FROM buku INNER JOIN Kategori kat ON buku.IdKategori = kat.IdKategori INNER JOIN Penerbit pe ON buku.IdPenerbit = pe.IdPenerbit";
-							$stmt = sqlsrv_query($conn, $sql_select);							
-							do {
-                  while ($row = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC)) {                                  
-                                ?>
-                                <tr>
-                                    <td><?= $row['kodebarang'];?></td>
-                                    <td><?= $row['namabarang'];?></td>
-                                    <td><?= $row['satuan'];?></td>
-                                    <td>
-     <a href="" class="badge badge-primary badge-pill tampilModalUbah" data-toggle="modal" data-target="#exampleModal" data-id="<?= $row['kodebarang'];?>" data-zurl="">Edit</a>
-	 <a href="hapus.php?kodebarang=<?= $row['kodebarang']; ?>"  class="badge badge-primary badge-pill" onclick="return confirm('Hapus data?');">Hapus</a>
-                                    </td>
-                                </tr>
-                                <?php
-                            }
-                        } while ( sqlsrv_next_result($stmt) );
-                        ?>
-                    </tbody>
-                </table>        
+               </table>        
             </div>
         </div>
     </div>
