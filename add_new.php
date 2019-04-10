@@ -31,13 +31,15 @@
 				 <div  class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 					<div class="modal-dialog" role="document">
 						<div class="modal-content">
-							<div class="modal-header">
-								<h5 class="modal-title" id="exampleModalLabel">Tambah Buku Baru</h5>								
-							</div>
+							<h5 class="modal-title" id="exampleModalLabel">Tambah Buku Baru</h5>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
 
 							<div class="modal-body">
 								<form action="add_new.php" method="POST" enctype="multipart/form-data">
 									<?
+										/*
 										include "config.php";
 
 										$conn = sqlsrv_connect($host, $connectionInfo);
@@ -47,6 +49,7 @@
 
 										$sql_select2 = "SELECT * FROM Penerbit";
 										$stmt2 = sqlsrv_query($conn, $sql_select2);
+										*/
 									?>
 									<div class="form-group">
 										<label for="JudulBuku">Judul Buku</label>
@@ -60,7 +63,6 @@
 										<label for="IdKategori">Kategori</label>
 										<select name="IdKategori" id="IdKategori" class="form-control" required="true">
 											<option>Pilih Kategori</option>
-											<option><? echo ?></option>
 											<option>Drama</option>
 											<option>Slice of Life</option>
 											<option>Romance</option>
